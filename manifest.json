@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Fame + Blossom.io addons",
+  "version": "0.1.0",
+  "description": "Injecting content to make Blossom.io more developer friendly.",
+
+  "content_scripts": [{
+    "css": ["blossom-fame.css"],
+    "js": ["inject.js"],
+    "matches": ["https://www.blossom.io/*"]
+  }],
+
+  "web_accessible_resources": [
+    "blossom-fame.js"
+  ]
+
+}
