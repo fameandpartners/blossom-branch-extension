@@ -12,7 +12,8 @@
   }],
 
   "web_accessible_resources": [
-    "blossom-fame.js"
+    "blossom-fame.js",
+    "mustache.min.js"
   ]
 
 }

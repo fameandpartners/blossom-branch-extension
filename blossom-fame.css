@@ -1,3 +1,10 @@
 body {
   background: url('https://media.giphy.com/media/3o7WTDJQVuYwhhuLhC/giphy.gif') !important;
 }
+
+#fame-blossom-wrapper pre {
+  margin: 0;
+  background: #efefef;
+  padding: 0.3em;
+  overflow-x: scroll;
+}
