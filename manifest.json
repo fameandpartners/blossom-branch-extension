@@ -5,6 +5,8 @@
   "version": "0.1.0",
   "description": "Injecting content to make Blossom.io more developer friendly.",
 
+  "icons": { "128": "batman-dress.png" },
+
   "content_scripts": [{
     "css": ["blossom-fame.css"],
     "js": ["inject.js"],
