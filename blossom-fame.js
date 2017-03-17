@@ -4,7 +4,6 @@
 (function(window){
   "use strict"
     // Initializations
-    console.log('Fame + Blossom.io add on activated!')
     var GIT_BRANCH_ID_LENGTH = 5;
     var SAMPLE_BRANCH_ENDING = '-sample-branch-name';
     var WRAPPER_NODE = 'fame-blossom-wrapper';
@@ -81,19 +80,7 @@
       });
     }
 
-    // Card click event handler
-    // NOTE: This is probably the most fragile part of extension relying on (4) class/id structure
-    on('#board', 'click', '.card', function(e) {
-      setTimeout(function(){ // Placeholder
-        var applicationCard = $('.q-application-card');
-        var cardSidebar = $('.x-card-sidebar-content-wrapper');
-        if (applicationCard && cardSidebar){
-          cardSidebar.insertBefore(createNode(), cardSidebar.firstChild);
-          attachLoader($(BRANCH_CONTENT_ID));
-        }
-      }, 1000);
-
-
+    function delayedBranchName(){
       setTimeout(function(){
         var fameBranchContent = $(BRANCH_CONTENT_ID);
         if (!fameBranchContent){ return null; }
@@ -108,7 +95,30 @@
           template,
           {branchName: branchName}
         );
-      }, 2500);
+      }, 1000);
+    }
+
+    var intervalId = undefined;
+    // Card click event handler
+    // NOTE: This is probably the most fragile part of extension relying on (4) class/id structure
+    on('#board', 'click', '.card', function(e) {
+      clearInterval(intervalId);
+      var counter = 0;
+      intervalId = setInterval(function(){
+        counter++;
+        if (counter >= 10){ clearInterval(intervalId); }
+        var applicationCard = $('.q-application-card');
+        var cardSidebar = $('.x-card-sidebar-content-wrapper');
+
+        // Card and Sidebar present
+        if (applicationCard && cardSidebar){
+          cardSidebar.insertBefore(createNode(), cardSidebar.firstChild);
+          attachLoader($(BRANCH_CONTENT_ID));
+          clearInterval(intervalId);
+          delayedBranchName();
+        }
+      }, 1000)
    });
+   console.log('Fame + Blossom.io add on activated!')
 
 })(window);
